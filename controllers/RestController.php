@@ -17,12 +17,30 @@ class RestController extends Controller
 
     public $headers;
 
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            // For cross-domain AJAX request
+            'corsFilter' => [
+                'class' => \yii\filters\Cors::className(),
+                'cors' => [
+                    // restrict access to domains:
+                    'Origin' => ['*'],
+                    'Access-Control-Request-Method' => ['*'],
+                    'Access-Control-Allow-Credentials' => true,
+                    'Access-Control-Max-Age' => 3600, // Cache (seconds)
+                    'Access-Control-Expose-Headers' => ['X-Pagination-Current-Page', 'X-Pagination-Page-Count', 'X-Pagination-Per-Page', 'X-Pagination-Total-Count'],
+                ],
+            ],
+        ]);
+    }
 
+    /*
     public function behaviors()
     {
         $behaviors = parent::behaviors();
 
-        /*
+        
         $behaviors['corsFilter'] = [
             'class' => \yii\filters\Cors::className(),
             'cors' => [
@@ -36,9 +54,10 @@ class RestController extends Controller
             ]
 
         ];
-        */
+        
         return $behaviors;
     }
+    */
 
     public function init()
     {
