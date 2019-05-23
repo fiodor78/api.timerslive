@@ -57,6 +57,7 @@ return [
                 '1/accesstoken'=>'site/accesstoken',
                 '1/me'=>'site/me',
                 '1/logout'=>'site/logout',
+                '/authorize'=>'site/authorize',
 
 
                 '1/employees'=>'employee/index',
