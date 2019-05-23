@@ -44,9 +44,6 @@ return [
                 ],
             ],
         ],
-        'tokens' => [
-            '{action}' => '<action:[a-zA-Z0-9\\-]+>',
-        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -55,19 +52,19 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '1/register' => 'site/register',
-                '1/authorize' => 'site/authorize',
-                '1/accesstoken' => 'site/accesstoken',
-                '1/me' => 'site/me',
-                '1/logout' => 'site/logout',
-                '/authorize' => 'site/authorize',
+                '1/register'=>'site/register',
+                '1/authorize'=>'site/authorize',
+                '1/accesstoken'=>'site/accesstoken',
+                '1/me'=>'site/me',
+                '1/logout'=>'site/logout',
+                '/authorize'=>'site/authorize',
 
 
-                '1/employees' => 'employee/index',
-                '1/employees/view/<id>' => 'employee/view',
-                '1/employees/create' => 'employee/create',
-                '1/employees/update/<id>' => 'employee/update',
-                '1/employees/delete/<id>' => 'employee/delete',
+                '1/employees'=>'employee/index',
+                '1/employees/view/<id>'=>'employee/view',
+                '1/employees/create'=>'employee/create',
+                '1/employees/update/<id>'=>'employee/update',
+                '1/employees/delete/<id>'=>'employee/delete',
 
 
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
