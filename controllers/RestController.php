@@ -5,7 +5,7 @@ namespace backend\controllers;
 use Yii;
 use yii\web\Controller;
 use app\models\LoginForm;
-use common\helpers\CorsCustom;
+//use common\helpers\CorsCustom;
 
 
 class RestController extends Controller
@@ -45,7 +45,7 @@ class RestController extends Controller
 
         $behaviors['corsFilter'] = [
 
-        'class' => CorsCustom::className(),
+        'class' => \yii\filters\Cors::className(), //CorsCustom::className(),
 
             ];
 
