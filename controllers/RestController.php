@@ -73,8 +73,6 @@ class RestController extends Controller
     }
     */
 
-    /*
-
     public function behaviors()
     {
         $behaviors = parent::behaviors();
@@ -97,7 +95,6 @@ class RestController extends Controller
         return $behaviors;
     }
 
-    */
 
     public function init()
     {
