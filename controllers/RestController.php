@@ -18,24 +18,50 @@ class RestController extends Controller
     public $headers;
 
     public function behaviors()
+
     {
-        return array_merge(parent::behaviors(), [
-            // For cross-domain AJAX request
-            'corsFilter' => [
-                'class' => \yii\filters\Cors::className(),
-                'cors' => [
-                    // restrict access to domains:
-                    'Origin' => ['*'],
-                    'Access-Control-Request-Method' => ['*'],
-                    'Access-Control-Allow-Credentials' => true,
-                    'Access-Control-Max-Age' => 3600, // Cache (seconds)
-                    'Access-Control-Expose-Headers' => ['X-Pagination-Current-Page', 'X-Pagination-Page-Count', 'X-Pagination-Per-Page', 'X-Pagination-Total-Count'],
-                ],
+
+        $behaviors = parent::behaviors();
+
+        $behaviors['contentNegotiator'] = [
+
+            'class' => ContentNegotiator::className(),
+            'formats' => [
+                'application/json' => Response::FORMAT_JSON,
             ],
-        ]);
+
+        ];
+
+        // remove authentication filter
+
+        $auth = $behaviors['authenticator'];
+
+        unset($behaviors['authenticator']);
+
+        // add CORS filter
+
+        $behaviors['corsFilter'] = [
+            'class' => \yii\filters\Cors::className(),
+        ];
+
+        // re-add authentication filter
+
+        $behaviors['authenticator'] = $auth;
+
+        // avoid authentication on CORS-pre-flight requests (HTTP OPTIONS method)
+
+        $behaviors['authenticator']['except'] = ['options'];
+
+        $behaviors['authenticator'] = [
+            'class' => HttpBearerAuth::className(),
+        ];
+
+
+        return $behaviors;
     }
 
     /*
+
     public function behaviors()
     {
         $behaviors = parent::behaviors();
@@ -57,19 +83,15 @@ class RestController extends Controller
         
         return $behaviors;
     }
+
     */
 
     public function init()
     {
         $this->request = json_decode(file_get_contents('php://input'), true);
 
-        if($this->request&&!is_array($this->request)){
+        if ($this->request && !is_array($this->request)) {
             Yii::$app->api->sendFailedResponse(['Invalid Json']);
-
         }
-
     }
-
 }
-
-
