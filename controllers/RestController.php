@@ -17,6 +17,8 @@ class RestController extends Controller
 
     public $headers;
 
+    /*
+
     public function behaviors()
 
     {
@@ -69,6 +71,7 @@ class RestController extends Controller
         return $behaviors;
 
     }
+    */
 
     /*
 
