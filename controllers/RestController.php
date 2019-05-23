@@ -79,7 +79,7 @@ class RestController extends Controller
 
         
         $behaviors['corsFilter'] = [
-            'class' => \yii\filters\Cors::className(),
+            'class' => CorsCustom::className(),//\yii\filters\Cors::className(),
             'cors' => [
                 'Origin' => ['*'],
                 'Access-Control-Allow-Origin' => ['*'],
