@@ -52,13 +52,12 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '1/register'=>'site/register',
-                '1/authorize'=>'site/authorize',
-                '1/accesstoken'=>'site/accesstoken',
-                '1/me'=>'site/me',
-                '1/logout'=>'site/logout',
+                '/register'=>'site/register',
                 '/authorize'=>'site/authorize',
-
+                '/accesstoken'=>'site/accesstoken',
+                '/me'=>'site/me',
+                '/logout'=>'site/logout',
+        
 
                 '1/employees'=>'employee/index',
                 '1/employees/view/<id>'=>'employee/view',
