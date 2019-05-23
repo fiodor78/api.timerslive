@@ -5,7 +5,7 @@ namespace backend\controllers;
 use Yii;
 use yii\web\Controller;
 use app\models\LoginForm;
-use backend\behaviours\CorsCustom;
+use common\helpers\CorsCustom;
 
 
 class RestController extends Controller
