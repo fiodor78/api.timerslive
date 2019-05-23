@@ -22,6 +22,7 @@ class RestController extends Controller
     {
         $behaviors = parent::behaviors();
 
+        /*
         $behaviors['corsFilter'] = [
             'class' => \yii\filters\Cors::className(),
             'cors' => [
@@ -35,6 +36,7 @@ class RestController extends Controller
             ]
 
         ];
+        */
         return $behaviors;
     }
 

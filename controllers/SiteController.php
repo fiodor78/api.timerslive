@@ -83,7 +83,7 @@ class SiteController extends RestController
      */
     public function actionIndex()
     {
-        Yii::$app->api->sendSuccessResponse(['Yii2 RESTful API with OAuth2']);
+        Yii::$app->api->sendSuccessResponse(['Timers.live RESTful API']);
         //  return $this->render('index');
     }
 
