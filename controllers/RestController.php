@@ -5,7 +5,7 @@ namespace backend\controllers;
 use Yii;
 use yii\web\Controller;
 use app\models\LoginForm;
-
+use backend\behaviours\CorsCustom;
 
 
 class RestController extends Controller
@@ -26,8 +26,11 @@ class RestController extends Controller
         $behaviors['contentNegotiator'] = [
 
             'class' => ContentNegotiator::className(),
+
             'formats' => [
+
                 'application/json' => Response::FORMAT_JSON,
+
             ],
 
         ];
@@ -41,8 +44,10 @@ class RestController extends Controller
         // add CORS filter
 
         $behaviors['corsFilter'] = [
-            'class' => \yii\filters\Cors::className(),
-        ];
+
+        'class' => CorsCustom::className(),
+
+            ];
 
         // re-add authentication filter
 
@@ -53,11 +58,16 @@ class RestController extends Controller
         $behaviors['authenticator']['except'] = ['options'];
 
         $behaviors['authenticator'] = [
-            'class' => HttpBearerAuth::className(),
-        ];
+
+        'class' => HttpBearerAuth::className(),
+
+        'except'=>['login']
+
+            ];
 
 
         return $behaviors;
+
     }
 
     /*
